@@ -1,0 +1,27 @@
+@import './base.scss';
+
+body {
+	overflow: hidden;
+}
+
+a {
+	transition: color 0.25s ease;
+}
+
+a:hover {
+	color: var(--c-text-hover);
+}
+
+.icon-wrapper {
+	position: relative;
+	height: 1em;
+	aspect-ratio: 1;
+}
+
+#app {
+	position: relative;
+	z-index: 0;
+	display: flex;
+	flex-direction: column;
+	max-height: 100vh;
+}
