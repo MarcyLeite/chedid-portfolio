@@ -9,14 +9,26 @@ const router = createRouter({
 			component: () => import('../views/PortfolioView.vue'),
 		},
 		{
-			path: '/projects',
-			name: 'projects',
-			component: () => import('../views/ProjectsView.vue'),
+			path: '/sketches',
+			component: () => import('../views/PortfolioView.vue'),
 		},
 		{
-			path: '/sketches',
-			name: 'sketches',
-			component: () => import('../views/SketchesView.vue'),
+			path: '/:id',
+			name: 'portfolioView',
+			component: () => import('../views/PortfolioView.vue'),
+		},
+		{
+			path: '/projects',
+			name: 'projects',
+			component: () => import('../views/ProjectsListView.vue'),
+		},
+		{
+			path: '/projects/:projectId',
+			component: () => import('../views/ProjectView.vue'),
+		},
+		{
+			path: '/projects/:projectId/:id',
+			component: () => import('../views/ProjectView.vue'),
 		},
 		{
 			path: '/about',

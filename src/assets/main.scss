@@ -2,6 +2,7 @@
 
 body {
 	overflow: hidden;
+	position: relative;
 }
 
 a {
@@ -16,6 +17,10 @@ a:hover {
 	position: relative;
 	height: 1em;
 	aspect-ratio: 1;
+}
+
+.above {
+	z-index: 100;
 }
 
 #app {

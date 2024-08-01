@@ -1,14 +1,16 @@
 <script lang="ts" setup>
+import router from '@/router'
 import { ref } from 'vue'
 
 type Props = {
 	linkList: string[]
 	startIndex: number
+	path: string
 }
 
 const gallerySlideContainer = ref<HTMLDivElement>()
 const showImage = ref<HTMLImageElement>()
-const { linkList, startIndex } = defineProps<Props>()
+const { linkList, startIndex, path } = defineProps<Props>()
 const index = ref(startIndex)
 
 const slideImage = (event: MouseEvent) => {
@@ -24,15 +26,18 @@ const slideImage = (event: MouseEvent) => {
 		index.value++
 		if (index.value === linkList.length) index.value = 0
 	}
+	router.push({ path: `${path}/${index.value}` })
 }
 </script>
 
 <template>
 	<div ref="gallerySlideContainer" class="gallery-slide-container" @click="slideImage($event)">
 		<div class="icon-wrapper">
-			<button class="menu-toggler" @click="$emit('close')">
-				<i class="fa-regular fa-close"></i>
-			</button>
+			<RouterLink :to="`${path}/`">
+				<button class="menu-toggler" @click="$emit('close')">
+					<i class="fa-regular fa-close"></i>
+				</button>
+			</RouterLink>
 		</div>
 		<Transition name="fade">
 			<div :key="index" class="image-container">
@@ -58,15 +63,15 @@ const slideImage = (event: MouseEvent) => {
 	padding: 1rem;
 }
 .gallery-slide-container {
-	position: absolute;
+	position: fixed;
 	top: 0;
-	left: 0;
+	z-index: 100;
 	width: 100%;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 0.5rem;
-	background-color: var(--c-faded-background);
+	background: var(--c-faded-background);
 }
 </style>

@@ -29,7 +29,9 @@ const navLinkList = [
 <template>
 	<header class="header">
 		<div class="header-announcement-bar">
-			<RouterLink class="title" to="/">Bianca Chedid</RouterLink>
+			<h1 class="title">
+				<RouterLink to="/">Bianca Chedid</RouterLink>
+			</h1>
 			<div class="icon-wrapper">
 				<Transition name="toggle-menu">
 					<button class="menu-toggler" v-if="!showMenu" @click="toggleMenu()">
@@ -56,11 +58,15 @@ const navLinkList = [
 
 <style lang="scss">
 .title {
-	font-size: 2rem;
-	font-family: 'Sora', sans-serif;
-	font-optical-sizing: auto;
-	font-weight: 600;
-	font-style: normal;
+	display: flex;
+	justify-content: left;
+	a {
+		font-size: 2rem;
+		font-family: 'Sora', sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 600;
+		font-style: normal;
+	}
 }
 .header {
 	position: sticky;
@@ -88,7 +94,7 @@ const navLinkList = [
 	position: relative;
 	display: flex;
 	justify-content: space-between;
-	padding: 1rem 2rem;
+	padding: 1rem 1.2rem;
 	align-items: center;
 }
 .header-menu {

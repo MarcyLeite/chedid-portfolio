@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 type Props = {
+	id: number
 	link: string
 	title: string
 }
 
-const { link, title } = defineProps<Props>()
+const { id, link, title } = defineProps<Props>()
 const isShowingTitle = ref(false)
 const toggleShowTitle = (value: boolean) => {
 	isShowingTitle.value = value
@@ -19,20 +20,22 @@ const toggleShowTitle = (value: boolean) => {
 		@touchstart="toggleShowTitle(true)"
 		@touchend="toggleShowTitle(false)"
 	>
-		<img
-			:class="{
-				'hover-filter': isShowingTitle,
-			}"
-			:src="link"
-		/>
-		<div
-			:class="{
-				hide: !isShowingTitle,
-			}"
-			class="title-container"
-		>
-			<span>{{ title }}</span>
-		</div>
+		<RouterLink :to="`/projects/${id}`">
+			<img
+				:class="{
+					'hover-filter': isShowingTitle,
+				}"
+				:src="link"
+			/>
+			<div
+				:class="{
+					hide: !isShowingTitle,
+				}"
+				class="title-container"
+			>
+				<span>{{ title }}</span>
+			</div>
+		</RouterLink>
 	</button>
 </template>
 
