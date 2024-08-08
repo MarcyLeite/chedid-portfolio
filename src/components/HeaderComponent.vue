@@ -33,20 +33,24 @@ const navLinkList = [
 				<RouterLink to="/">Bianca Chedid</RouterLink>
 			</h1>
 			<div class="icon-wrapper">
-				<button class="menu-toggler" :class="{ hide: isShowingMenu }" @click="toggleMenu()">
+				<button
+					class="menu-toggler"
+					:class="{ 'mobile-hide': isShowingMenu }"
+					@click="toggleMenu()"
+				>
 					<i class="fa-regular fa-bars"></i>
 				</button>
 				<button
 					class="menu-toggler"
-					:class="{ hide: !isShowingMenu }"
+					:class="{ 'mobile-hide': !isShowingMenu }"
 					@click="toggleMenu()"
 				>
 					<i class="fa-regular fa-close"></i>
 				</button>
 			</div>
 		</div>
-		<div class="header-menu" :class="{ hide: !isShowingMenu }">
-			<nav class="menu-navegation-wrapper" :class="{ hide: !isShowingMenu }">
+		<div class="header-menu" :class="{ 'mobile-hide': !isShowingMenu }">
+			<nav class="menu-navegation-wrapper" :class="{ 'mobile-hide': !isShowingMenu }">
 				<div v-for="(navLink, i) in navLinkList" :key="i" @click="toggleMenu">
 					<RouterLink :to="navLink.to">{{ navLink.display }}</RouterLink>
 				</div>
@@ -75,6 +79,9 @@ const navLinkList = [
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+
+	padding: 1rem 1.2rem;
+
 	background: var(--c-background);
 }
 .menu-toggler {
@@ -89,6 +96,7 @@ const navLinkList = [
 	transition: all 0.5s ease;
 }
 
+.mobile-hide,
 .hide {
 	opacity: 0;
 }
@@ -98,7 +106,6 @@ const navLinkList = [
 	position: relative;
 	display: flex;
 	justify-content: space-between;
-	padding: 1rem 1.2rem;
 	align-items: center;
 }
 .header-menu {
@@ -107,10 +114,11 @@ const navLinkList = [
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+
+	left: 0;
 	flex-grow: 1;
 
 	transition: all 0.5s ease;
-
 	background: inherit;
 }
 
@@ -130,8 +138,24 @@ const navLinkList = [
 }
 
 @media only screen and (min-width: 600px) {
-	.icon-wrapper {
+	.icon-wrapper,
+	.menu-social-bar {
 		display: none;
+	}
+	.mobile-hide {
+		opacity: 1;
+	}
+	.header-menu {
+		position: relative;
+		height: auto;
+	}
+	.menu-navegation-wrapper,
+	.header {
+		flex-direction: row;
+	}
+
+	.menu-navegation-wrapper {
+		justify-content: end;
 	}
 }
 </style>
