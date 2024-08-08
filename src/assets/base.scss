@@ -3,10 +3,12 @@
 
 :root {
 	--c-white: #fff;
-	--c-blue: #0d7575;
+	--c-blue: #095c5c;
+	--c-blue-soft: hsl(180, 60%, 70%);
 	--c-black: #121212;
 
 	--c-primary: var(--c-blue);
+	--c-primary-soft: var(--c-blue-soft);
 }
 
 :root {
@@ -15,6 +17,8 @@
 	--c-background: var(--c-white);
 	--c-faded-background: #121212fa;
 	--c-faded-text: var(--c-white);
+	--c-button-text: var(--c-white);
+	--c-button-background: var(--c-primary);
 }
 
 *,
@@ -68,4 +72,15 @@ body {
 .fade-enter-from,
 .fade-leave-to {
 	opacity: 0;
+}
+
+strong {
+	font-weight: bold;
+}
+
+textarea {
+	resize: none;
+	width: 100%;
+	font-size: 1em;
+	height: 2em;
 }

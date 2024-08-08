@@ -9,5 +9,6 @@ import { RouterView } from 'vue-router'
 <style scoped lang="scss">
 .content-wrapper {
 	overflow: scroll;
+	height: 100vh;
 }
 </style>
