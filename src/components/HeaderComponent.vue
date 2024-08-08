@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import SocialBar from '../components/SocialBar.vue'
-const showMenu = ref(false)
+const isShowingMenu = ref(false)
 const toggleMenu = () => {
-	showMenu.value = !showMenu.value
+	isShowingMenu.value = !isShowingMenu.value
 }
 const navLinkList = [
 	{
@@ -33,26 +33,26 @@ const navLinkList = [
 				<RouterLink to="/">Bianca Chedid</RouterLink>
 			</h1>
 			<div class="icon-wrapper">
-				<Transition name="toggle-menu">
-					<button class="menu-toggler" v-if="!showMenu" @click="toggleMenu()">
-						<i class="fa-regular fa-bars"></i>
-					</button>
-					<button class="menu-toggler" v-else @click="toggleMenu()">
-						<i class="fa-regular fa-close"></i>
-					</button>
-				</Transition>
+				<button class="menu-toggler" :class="{ hide: isShowingMenu }" @click="toggleMenu()">
+					<i class="fa-regular fa-bars"></i>
+				</button>
+				<button
+					class="menu-toggler"
+					:class="{ hide: !isShowingMenu }"
+					@click="toggleMenu()"
+				>
+					<i class="fa-regular fa-close"></i>
+				</button>
 			</div>
 		</div>
-		<Transition name="toggle-menu">
-			<div v-if="showMenu" class="header-menu">
-				<nav class="menu-navegation-wrapper">
-					<div v-for="(navLink, i) in navLinkList" :key="i" @click="toggleMenu">
-						<RouterLink :to="navLink.to">{{ navLink.display }}</RouterLink>
-					</div>
-				</nav>
-				<SocialBar></SocialBar>
-			</div>
-		</Transition>
+		<div class="header-menu" :class="{ hide: !isShowingMenu }">
+			<nav class="menu-navegation-wrapper" :class="{ hide: !isShowingMenu }">
+				<div v-for="(navLink, i) in navLinkList" :key="i" @click="toggleMenu">
+					<RouterLink :to="navLink.to">{{ navLink.display }}</RouterLink>
+				</div>
+			</nav>
+			<SocialBar></SocialBar>
+		</div>
 	</header>
 </template>
 
@@ -84,11 +84,15 @@ const navLinkList = [
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	aspect-ratio: 1;
-	svg {
-		display: block;
-	}
+	opacity: 1;
+
+	transition: all 0.5s ease;
 }
+
+.hide {
+	opacity: 0;
+}
+
 .header-announcement-bar {
 	z-index: 1;
 	position: relative;
@@ -105,8 +109,11 @@ const navLinkList = [
 	flex-direction: column;
 	flex-grow: 1;
 
+	transition: all 0.5s ease;
+
 	background: inherit;
 }
+
 .menu-navegation-wrapper {
 	display: flex;
 	flex-grow: 1;
@@ -114,21 +121,17 @@ const navLinkList = [
 	justify-content: center;
 	gap: 1rem;
 	align-items: center;
-}
+	transition: all 0.5s ease;
 
-.toggle-menu-enter-active,
-.toggle-menu-leave-active {
-	transition: opacity 0.5s ease;
-	.menu-navegation-wrapper {
-		transition: transform 1s ease;
+	&.hide {
+		opacity: 0.4;
+		transform: translate(0, 6rem);
 	}
 }
 
-.toggle-menu-enter-from,
-.toggle-menu-leave-to {
-	opacity: 0;
-	.menu-navegation-wrapper {
-		transform: translate(0, 4rem);
+@media only screen and (min-width: 600px) {
+	.icon-wrapper {
+		display: none;
 	}
 }
 </style>
