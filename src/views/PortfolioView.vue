@@ -10,7 +10,10 @@ import { useRoute } from 'vue-router'
 
 const baseSeed = getRandomInt(10000000)
 const seedList = Array.from(Array(10).keys()).map((i) => baseSeed + i)
-const linkList = seedList.map((seed) => `https://picsum.photos/seed/${seed}/1920/1080`)
+const linkList = seedList.map(
+	(seed) =>
+		`https://picsum.photos/seed/${seed}/${460 + getRandomInt(1000)}/${460 + getRandomInt(1000)}`
+)
 
 const isSlideShowing = ref(false)
 const slideIndex = ref(0)

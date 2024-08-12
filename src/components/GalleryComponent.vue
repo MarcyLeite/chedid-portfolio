@@ -1,30 +1,45 @@
 <script lang="ts" setup>
+import { RouterLink } from 'vue-router'
+
 type Props = {
 	linkList: string[]
 	path: string
 }
 
 const { linkList, path } = defineProps<Props>()
+
+const itemList = linkList.map((v) => ({ link: v }))
 </script>
 <template>
 	<div class="gallery-container">
-		<button
-			v-for="(link, i) in linkList"
-			:key="i"
+		<masonry-wall
 			class="image-wrapper"
-			@click="$emit('thumb-click', i)"
+			:items="itemList"
+			:ssr-columns="1"
+			:column-width="460"
+			:gap="8"
 		>
-			<RouterLink :to="`${path}/${i}`">
-				<img :src="link" />
-			</RouterLink>
-		</button>
+			<template #default="{ item, index }">
+				<RouterLink :to="`/${path}${index}`">
+					<img :src="item.link" />
+				</RouterLink>
+			</template>
+		</masonry-wall>
 	</div>
 </template>
 <style scoped lang="scss">
 .gallery-container {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	padding: 0 0.5rem;
-	gap: 0.5rem;
+	max-width: 1600px;
+	margin: auto;
+}
+a {
+	width: 100%;
+	img {
+		width: 100%;
+	}
 }
 </style>

@@ -11,7 +11,7 @@
 	</div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .menu-social-bar {
 	display: flex;
 	justify-content: center;

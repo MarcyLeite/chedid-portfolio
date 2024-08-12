@@ -80,4 +80,10 @@ if (route.params.id && typeof route.params.id === 'string') showSlide(Number(rou
 		margin-bottom: 1rem;
 	}
 }
+@media only screen and (min-width: 760px) {
+	.info-wrapper {
+		max-width: 760px;
+		margin: auto;
+	}
+}
 </style>

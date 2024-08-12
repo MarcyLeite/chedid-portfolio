@@ -32,10 +32,16 @@
 a {
 	color: inherit;
 	text-decoration: none;
+	display: flex;
 }
 
 a:hover {
 	cursor: pointer;
+}
+
+.resize-animation-stopper * {
+	animation: none !important;
+	transition: none !important;
 }
 
 button {
@@ -51,6 +57,7 @@ button {
 
 img {
 	max-width: 100%;
+	height: auto;
 	display: block;
 }
 
@@ -72,6 +79,10 @@ body {
 .fade-enter-from,
 .fade-leave-to {
 	opacity: 0;
+}
+
+.masonry-item {
+	display: flex;
 }
 
 strong {
